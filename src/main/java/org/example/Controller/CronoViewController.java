@@ -51,5 +51,4 @@ public class CronoViewController {
         App.setRoot("TableTimeView");
     }
 
-
 }
