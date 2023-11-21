@@ -3,6 +3,9 @@ package org.example.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import org.example.App;
+
+import java.io.IOException;
 
 public class CronoViewController {
 
@@ -28,6 +31,25 @@ public class CronoViewController {
     public Button save_btn;
 
 
+    @FXML
+    private void Start() throws IOException {
+
+    }
+
+    @FXML
+    private void Stop() throws IOException {
+
+    }
+
+    @FXML
+    private void Restart() throws IOException {
+
+    }
+
+    @FXML
+    private void ShowTime() throws IOException {
+        App.setRoot("TableTimeView");
+    }
 
 
 }
