@@ -62,5 +62,3 @@ public class ConnectionData implements Serializable{//HACEMOS LA CLASE SERIALIZA
     }
 
 }
-
-}
