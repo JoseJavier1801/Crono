@@ -1,13 +1,16 @@
 package org.example.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.App;
+import org.example.Model.Cronometro;
+import org.example.Model.CronometroListener;
 
 import java.io.IOException;
 
-public class CronoViewController {
+public class CronoViewController implements CronometroListener {
 
     @FXML
     public Label hours;
@@ -30,25 +33,58 @@ public class CronoViewController {
     @FXML
     public Button save_btn;
 
+    private Cronometro cronometro;
+    private Thread cronometroThread;
 
-    @FXML
-    private void Start() throws IOException {
-
+    public CronoViewController() {
+        cronometro = new Cronometro();
+        cronometro.setListener(this); // Establecer el controlador como listener
+        cronometroThread = new Thread(cronometro);
     }
 
     @FXML
-    private void Stop() throws IOException {
+    private void Start() {
+        if (!cronometroThread.isAlive()) {
+            cronometro.startCronometro();
+            cronometroThread = new Thread(cronometro);
+            cronometroThread.start();
 
+            // Actualizar los Label con los valores iniciales del cronómetro
+            updateLabels();
+        }
     }
 
     @FXML
-    private void Restart() throws IOException {
+    private void Stop() {
+        cronometro.stopCronometro();
+    }
 
+    @FXML
+    private void Restart() {
+        cronometro.stopCronometro();
+        cronometro.resetAndStartCronometro();
+        updateLabels();
+    }
+
+    @Override
+    public void onTimeChanged(int hours, int minutes, int seconds) {
+        Platform.runLater(() -> {
+            this.hours.setText(String.format("%d", hours));
+            this.minutes.setText(String.format("%02d", minutes));
+            this.seconds.setText(String.format("%02d", seconds));
+        });
+    }
+
+    private void updateLabels() {
+        Platform.runLater(() -> {
+            hours.setText(String.format("%d", cronometro.getHours()));
+            minutes.setText(String.format("%02d", cronometro.getMinutes()));
+            seconds.setText(String.format("%02d", cronometro.getSeconds()));
+        });
     }
 
     @FXML
     private void ShowTime() throws IOException {
-        App.setRoot("TableTimeView");
+        App.setRoot("tablecrono");
     }
-
 }
