@@ -1,32 +1,22 @@
 package org.example.Model;
 
 public class Crono {
-    private int hours;
+    private int milisegundos;
     private int minutes;
     private int seconds;
-    private int total;
 
-    // Constructor vacío
-    public Crono() {
-    }
-
-    // Constructor con parámetros
-    public Crono(int hours, int minutes, int seconds) {
-        this.hours = hours;
+    public Crono(int milisegundos, int minutes, int seconds) {
+        this.milisegundos = milisegundos;
         this.minutes = minutes;
         this.seconds = seconds;
-        // Calcular el total en segundos
-        this.total = hours * 3600 + minutes * 60 + seconds;
     }
 
-    // Getters y setters
-    public int getHours() {
-        return hours;
+    public int getMilisegundos() {
+        return milisegundos;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
-        recalculateTotal();
+    public void setMilisegundos(int milisegundos) {
+        this.milisegundos = milisegundos;
     }
 
     public int getMinutes() {
@@ -35,7 +25,6 @@ public class Crono {
 
     public void setMinutes(int minutes) {
         this.minutes = minutes;
-        recalculateTotal();
     }
 
     public int getSeconds() {
@@ -44,14 +33,14 @@ public class Crono {
 
     public void setSeconds(int seconds) {
         this.seconds = seconds;
-        recalculateTotal();
     }
 
-    public int getTotal() {
-        return total;
-    }
-
-    private void recalculateTotal() {
-        this.total = hours * 3600 + minutes * 60 + seconds;
+    @Override
+    public String toString() {
+        return "Crono{" +
+                "milisegundos=" + milisegundos +
+                ", minutes=" + minutes +
+                ", seconds=" + seconds +
+                '}';
     }
 }
