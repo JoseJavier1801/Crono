@@ -58,6 +58,9 @@ public class ConnectionData implements Serializable{//HACEMOS LA CLASE SERIALIZA
     public String toString() {
         return "ConnectionData [server=" + server + ", database=" + database + ", username=" + username + ", password="
                 + password + "]";
+
     }
+
+}
 
 }
