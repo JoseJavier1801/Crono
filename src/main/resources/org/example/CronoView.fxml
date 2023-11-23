@@ -2,10 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgb(72, 143, 200);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.CronoViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: rgb(31, 138, 194);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.CronoViewController">
    <children>
       <Label fx:id="hours" layoutX="45.0" layoutY="152.0" text="00" textFill="WHITE">
          <font>
@@ -32,30 +34,35 @@
             <Font size="78.0" />
          </font>
       </Label>
-      <Button fx:id="restart_btn" layoutX="388.0" layoutY="231.0" mnemonicParsing="false" onAction="#Restart" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="RESTART">
+      <Button fx:id="restart_btn" layoutX="388.0" layoutY="231.0" mnemonicParsing="false" onAction="#Restart" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="RESTART">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="start_btn" layoutX="388.0" layoutY="137.0" mnemonicParsing="false" onAction="#Start" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="START">
+      <Button fx:id="start_btn" layoutX="388.0" layoutY="137.0" mnemonicParsing="false" onAction="#Start" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="START">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="stop_btn" layoutX="584.0" layoutY="137.0" mnemonicParsing="false" onAction="#Stop" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="STOP">
+      <Button fx:id="stop_btn" layoutX="584.0" layoutY="137.0" mnemonicParsing="false" onAction="#Stop" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="STOP">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="save_btn" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="SHOW SAVED TIME">
+      <Button fx:id="save_btn" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="SHOW SAVED TIME">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="change_btn" layoutX="474.0" layoutY="329.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: rgb(227, 176, 51);" text="CHANGE TO COUNTDOWN">
+      <Button fx:id="change_btn" layoutX="480.0" layoutY="325.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: rgb(255, 195, 35);" text="CHANGE TO COUNTDOWN">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <ImageView fitHeight="68.0" fitWidth="318.0" layoutX="234.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Logo_Renault_F1_Team.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
