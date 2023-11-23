@@ -24,7 +24,7 @@ public class Cronometro extends Thread {
     public void run() {
         while (running) {
             try {
-                Thread.sleep(25); // Espera 100 milisegundos
+                Thread.sleep(25); // Espera 25 milisegundos
                 miliseconds++;
 
                 if (miliseconds == 60) {
