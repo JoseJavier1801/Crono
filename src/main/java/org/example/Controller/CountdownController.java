@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import org.example.App;
 import org.example.Model.Crono;
+
+import java.io.IOException;
 
 public class CountdownController {
 
@@ -46,9 +49,15 @@ public class CountdownController {
 
     @FXML
     private Button resbtnminseconmin;
+    @FXML
+    private Button buttonExit;
 
     private Crono crono;
     private Timeline timeline;
+    @FXML
+    private void Exit() throws IOException {
+        App.setRoot("CronoView");
+    }
 
     public CountdownController() {
         crono = new Crono(0, 0, 0);
