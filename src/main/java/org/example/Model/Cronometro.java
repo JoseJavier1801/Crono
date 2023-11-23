@@ -3,7 +3,7 @@ package org.example.Model;
 public class Cronometro extends Thread {
     private boolean running;
     private boolean stopped;
-    private int hours, minutes, seconds;
+    private int minutes, seconds, miliseconds;
     private CronometroListener listener;
 
     private Object lock = new Object();
@@ -15,9 +15,9 @@ public class Cronometro extends Thread {
     public Cronometro() {
         running = false;
         stopped = false;
-        hours = 0;
         minutes = 0;
         seconds = 0;
+        miliseconds = 0;
     }
 
     @Override
@@ -25,21 +25,21 @@ public class Cronometro extends Thread {
         while (running) {
             try {
                 Thread.sleep(25); // Espera 100 milisegundos
-                seconds++;
+                miliseconds++;
 
-                if (seconds == 60) {
-                    seconds = 0;
-                    minutes++;
+                if (miliseconds == 60) {
+                    miliseconds = 0;
+                    seconds++;
 
-                    if (minutes == 60) {
-                        minutes = 0;
-                        hours++;
+                    if (seconds == 60) {
+                        seconds = 0;
+                        minutes++;
                     }
                 }
 
                 // Notifica al listener después de incrementar los segundos
                 if (listener != null) {
-                    listener.onTimeChanged(hours, minutes, seconds);
+                    listener.onTimeChanged(minutes, seconds, miliseconds);
                 }
             } catch (InterruptedException e) {
                 // Interrupción del hilo, simplemente sale del bucle
@@ -72,14 +72,10 @@ public class Cronometro extends Thread {
     }
 
     public void resetCronometro() {
-        hours = 0;
-        minutes = 0;
-        seconds = 0;
+        minutes = 00;
+        seconds = 00;
+        miliseconds = 00;
         stopCronometro();
-    }
-
-    public int getHours() {
-        return hours;
     }
 
     public int getMinutes() {
@@ -88,5 +84,9 @@ public class Cronometro extends Thread {
 
     public int getSeconds() {
         return seconds;
+    }
+
+    public int getMiliseconds() {
+        return miliseconds;
     }
 }

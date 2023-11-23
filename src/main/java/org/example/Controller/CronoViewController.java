@@ -69,7 +69,7 @@ public class CronoViewController implements CronometroListener {
     @Override
     public void onTimeChanged(int hours, int minutes, int seconds) {
         Platform.runLater(() -> {
-            this.hours.setText(String.format("%d", hours));
+            this.hours.setText(String.format("%02d", hours));
             this.minutes.setText(String.format("%02d", minutes));
             this.seconds.setText(String.format("%02d", seconds));
         });
@@ -77,9 +77,9 @@ public class CronoViewController implements CronometroListener {
 
     private void updateLabels() {
         Platform.runLater(() -> {
-            hours.setText(String.format("%d", cronometro.getHours()));
-            minutes.setText(String.format("%02d", cronometro.getMinutes()));
-            seconds.setText(String.format("%02d", cronometro.getSeconds()));
+            hours.setText(String.format("%02d", cronometro.getMinutes()));
+            minutes.setText(String.format("%02d", cronometro.getSeconds()));
+            seconds.setText(String.format("%02d", cronometro.getMiliseconds()));
         });
     }
 
