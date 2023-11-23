@@ -52,7 +52,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="change_btn" layoutX="480.0" layoutY="325.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: rgb(255, 195, 35);" text="CHANGE TO COUNTDOWN">
+      <Button fx:id="change_btn" layoutX="487.0" layoutY="314.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="COUNTDOWN">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
