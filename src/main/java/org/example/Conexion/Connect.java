@@ -1,7 +1,5 @@
 package org.example.Conexion;
 
-import org.example.Conexion.ConnectionData;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -47,7 +45,5 @@ public class Connect {
         }
 
         return con;
-
     }
-
 }

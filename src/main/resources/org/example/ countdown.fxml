@@ -32,27 +32,27 @@
                 <Font size="78.0" />
             </font>
         </Label>
-        <Button layoutX="498.0" layoutY="273.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="RESTART" onAction="#restartCountdown">
+        <Button fx:id="Restartbutton" layoutX="498.0" layoutY="273.0" mnemonicParsing="false" onAction="#restartCountdown" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="RESTART">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="498.0" layoutY="209.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="START" onAction="#startCountdown">
+        <Button fx:id="startbtn" layoutX="498.0" layoutY="209.0" mnemonicParsing="false" onAction="#startCountdown" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="START">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="498.0" layoutY="141.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="STOP" onAction="#stopCountdown">
+        <Button fx:id="stopp_btn" layoutX="498.0" layoutY="141.0" mnemonicParsing="false" onAction="#stopCountdown" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 157, 32);" text="STOP">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="resbtn" layoutX="152.0" layoutY="291.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="63.0" style="-fx-background-color: rgb(255, 157, 32);" text="-" onAction="#decrementMilisegundos">
+        <Button fx:id="resbtn" layoutX="152.0" layoutY="291.0" mnemonicParsing="false" onAction="#decrementMilisegundos" prefHeight="50.0" prefWidth="63.0" style="-fx-background-color: rgb(255, 157, 32);" text="-">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Button>
-        <Button fx:id="sumbtn" layoutX="275.0" layoutY="291.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="63.0" style="-fx-background-color: rgb(255, 157, 32);" text="+" onAction="#incrementMilisegundos">
+        <Button fx:id="sumbtn" layoutX="275.0" layoutY="291.0" mnemonicParsing="false" onAction="#incrementMilisegundos" prefHeight="50.0" prefWidth="63.0" style="-fx-background-color: rgb(255, 157, 32);" text="+">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>

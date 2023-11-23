@@ -54,11 +54,14 @@ public class ConnectionData implements Serializable{//HACEMOS LA CLASE SERIALIZA
         this.password = password;
     }
 
+
     @Override
     public String toString() {
         return "ConnectionData [server=" + server + ", database=" + database + ", username=" + username + ", password="
                 + password + "]";
-
     }
+
+
+
 
 }

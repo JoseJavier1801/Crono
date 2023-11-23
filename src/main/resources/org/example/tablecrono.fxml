@@ -5,34 +5,35 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.ControllerShowCrono">
 
-    <TableView fx:id="cronoTable" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="298.0">
-        <!-- Columna para las horas -->
-        <TableColumn text="Horas">
-            <cellValueFactory>
-                <PropertyValueFactory property="hours" />
-            </cellValueFactory>
-        </TableColumn>
-
-        <!-- Columna para los minutos -->
-        <TableColumn text="Minutos">
-            <cellValueFactory>
-                <PropertyValueFactory property="minutes" />
-            </cellValueFactory>
-        </TableColumn>
-
-        <!-- Columna para los segundos -->
-        <TableColumn text="Segundos">
-            <cellValueFactory>
-                <PropertyValueFactory property="seconds" />
-            </cellValueFactory>
-        </TableColumn>
+    <TableView fx:id="cronoTable" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="230.0">
+        <!-- Columnas para las horas, minutos y segundos -->
         <columns>
-            <TableColumn prefWidth="75.0" text="HORAS" />
-            <TableColumn prefWidth="75.0" text="MINUTOS" />
-            <TableColumn prefWidth="75.0" text="SEGUNDOS" />
-            <TableColumn prefWidth="75.0" text="TOTAL" />
+            <TableColumn fx:id="hoursColumn" prefWidth="75.0" text="Horas">
+                <cellValueFactory>
+                    <PropertyValueFactory property="hours" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="minutesColumn" prefWidth="75.0" text="Minutos">
+                <cellValueFactory>
+                    <PropertyValueFactory property="minutes" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="secondsColumn" prefWidth="75.0" text="Segundos">
+                <cellValueFactory>
+                    <PropertyValueFactory property="seconds" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- También puedes agregar una columna para milisegundos si es necesario -->
+            <TableColumn fx:id="milisegundosColumn" prefWidth="75.0" text="Milisegundos">
+                <cellValueFactory>
+                    <PropertyValueFactory property="milisegundos" />
+                </cellValueFactory>
+            </TableColumn>
         </columns>
     </TableView>
 

@@ -21,16 +21,31 @@ public class CountdownController {
     private Label secondsLabel;
 
     @FXML
-    private Button stop_btn;
+    private Button stopp_btn;
 
     @FXML
-    private Button restart_btn;
+    private Button startbtn;
 
     @FXML
-    private Button sumbtn;
+    private Button Restartbutton;
 
     @FXML
-    private Button resbtn;
+    private Button sumbtnmin;
+
+    @FXML
+    private Button resbtnmin;
+
+    @FXML
+    private Button sumbtnsecon;
+
+    @FXML
+    private Button resbtnsecon;
+
+    @FXML
+    private Button sumbtseconmin;
+
+    @FXML
+    private Button resbtnminseconmin;
 
     private Crono crono;
     private Timeline timeline;
@@ -85,12 +100,16 @@ public class CountdownController {
     @FXML
     private void startCountdown() {
         if (timeline.getStatus() != Timeline.Status.RUNNING) {
+            // Limpiar los KeyFrames existentes antes de agregar uno nuevo
+            timeline.getKeyFrames().clear();
+
             KeyFrame keyFrame = new KeyFrame(Duration.millis(1), this::updateCountdown);
             timeline.getKeyFrames().add(keyFrame);
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         }
     }
+
 
     @FXML
     private void stopCountdown() {
@@ -104,10 +123,17 @@ public class CountdownController {
         updateLabels();
     }
 
-    @FXML
+
     private void updateCountdown(ActionEvent event) {
-        if (crono.getMilisegundos() > 0 || crono.getMinutes() > 0 || crono.getSeconds() > 0) {
+        if (crono.getMilisegundos() > 0) {
             decrementMilisegundos();
+        } else if (crono.getSeconds() > 0) {
+            decrementSeconds();
+            crono.setMilisegundos(999);
+        } else if (crono.getMinutes() > 0) {
+            decrementMinutes();
+            crono.setSeconds(59);
+            crono.setMilisegundos(999);
         } else {
             stopCountdown();
         }
