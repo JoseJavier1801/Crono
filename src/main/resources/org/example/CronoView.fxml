@@ -32,22 +32,27 @@
             <Font size="78.0" />
          </font>
       </Label>
-      <Button fx:id="restart_btn" layoutX="382.0" layoutY="239.0" mnemonicParsing="false" onAction="#Restart" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="RESTART">
+      <Button fx:id="restart_btn" layoutX="388.0" layoutY="231.0" mnemonicParsing="false" onAction="#Restart" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="RESTART">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="start_btn" layoutX="382.0" layoutY="145.0" mnemonicParsing="false" onAction="#Start" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="START">
+      <Button fx:id="start_btn" layoutX="388.0" layoutY="137.0" mnemonicParsing="false" onAction="#Start" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="START">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="stop_btn" layoutX="578.0" layoutY="145.0" mnemonicParsing="false" onAction="#Stop" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="STOP">
+      <Button fx:id="stop_btn" layoutX="584.0" layoutY="137.0" mnemonicParsing="false" onAction="#Stop" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="STOP">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="save_btn" layoutX="578.0" layoutY="239.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="SHOW SAVED TIME">
+      <Button fx:id="save_btn" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(227, 176, 51);" text="SHOW SAVED TIME">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="change_btn" layoutX="474.0" layoutY="329.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: rgb(227, 176, 51);" text="CHANGE TO COUNTDOWN">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

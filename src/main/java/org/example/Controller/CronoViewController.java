@@ -33,7 +33,11 @@ public class CronoViewController implements CronometroListener {
     @FXML
     public Button save_btn;
 
+    @FXML
+    public Button change_btn;
+
     private Cronometro cronometro;
+
     private Thread cronometroThread;
 
     public CronoViewController() {
@@ -86,5 +90,10 @@ public class CronoViewController implements CronometroListener {
     @FXML
     private void ShowTime() throws IOException {
         App.setRoot("tablecrono");
+    }
+
+    @FXML
+    private void ChangeView() throws IOException {
+        App.setRoot("c");
     }
 }
