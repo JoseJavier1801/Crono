@@ -12,7 +12,8 @@ import java.util.List;
 
 public class CronoDAO implements IDAO<Crono> {
     private final static String FIND_ALL = "SELECT * FROM time";
-    private final static String add = "INSERT INTO `time` (`milisegundos`, `minutos`, `segundos`) VALUES (?, ?, ?)";
+    private final static String add = "INSERT INTO time (`milisegundos`, `minutos`, `segundos`,`id`) VALUES (?, ?, ?,?)";
+    private  final  static String delete="DELETE FROM time WHERE id = ?";
 
     private Connection conn;
     public CronoDAO(Connection conn) {
@@ -34,10 +35,12 @@ public class CronoDAO implements IDAO<Crono> {
 
             while (resultSet.next()) {
                 int milisegundos = resultSet.getInt("milisegundos");
-                int minutes = resultSet.getInt("minutes");
-                int seconds = resultSet.getInt("seconds");
+                int minutes = resultSet.getInt("minutos");
+                int seconds = resultSet.getInt("segundos");
+                int id = resultSet.getInt("id");
 
-                Crono crono = new Crono(milisegundos, minutes, seconds);
+
+                Crono crono = new Crono(milisegundos, minutes, seconds,id);
                 cronos.add(crono);
             }
 
@@ -54,6 +57,7 @@ public class CronoDAO implements IDAO<Crono> {
             statement.setInt(1, entity.getMilisegundos());
             statement.setInt(2, entity.getMinutes());
             statement.setInt(3, entity.getSeconds());
+            statement.setInt(4, entity.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -61,8 +65,15 @@ public class CronoDAO implements IDAO<Crono> {
         }
     }
 
+
     @Override
     public void delete(Crono entity) {
-        // Implementa la lógica para eliminar un Crono de la base de datos
+        try (PreparedStatement statement = conn.prepareStatement(delete)) {
+            statement.setInt(1, entity.getId());  // Asegúrate de tener un método getId() en tu clase Crono
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }
