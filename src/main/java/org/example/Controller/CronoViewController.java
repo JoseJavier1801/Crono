@@ -10,6 +10,9 @@ import org.example.Model.CronometroListener;
 
 import java.io.IOException;
 
+/**
+ * Controlador que gestiona  la interfaz gráfica del cronómetro.
+ */
 public class CronoViewController implements CronometroListener {
 
     @FXML
@@ -40,12 +43,18 @@ public class CronoViewController implements CronometroListener {
 
     private Thread cronometroThread;
 
+    /**
+     * Constructor del controlador. Inicializa el cronómetro y el hilo asociado.
+     */
     public CronoViewController() {
         cronometro = new Cronometro();
         cronometro.setListener(this); // Establecer el controlador como listener
         cronometroThread = new Thread(cronometro);
     }
 
+    /**
+     * Inicia el cronómetro y actualiza los Labels con los valores iniciales.
+     */
     @FXML
     private void Start() {
         if (!cronometroThread.isAlive()) {
@@ -58,11 +67,17 @@ public class CronoViewController implements CronometroListener {
         }
     }
 
+    /**
+     * Detiene el cronómetro.
+     */
     @FXML
     private void Stop() {
         cronometro.stopCronometro();
     }
 
+    /**
+     * Reinicia el cronómetro y actualiza los Labels.
+     */
     @FXML
     private void Restart() {
         cronometro.stopCronometro();
@@ -70,6 +85,13 @@ public class CronoViewController implements CronometroListener {
         updateLabels();
     }
 
+    /**
+     * Método llamado cuando cambia el tiempo en el cronómetro. Actualiza los Labels en la interfaz gráfica.
+     *
+     * @param hours   Horas
+     * @param minutes Minutos
+     * @param seconds Segundos
+     */
     @Override
     public void onTimeChanged(int hours, int minutes, int seconds) {
         Platform.runLater(() -> {
@@ -79,6 +101,9 @@ public class CronoViewController implements CronometroListener {
         });
     }
 
+    /**
+     * Actualiza los Labels en la interfaz gráfica con los valores actuales del cronómetro.
+     */
     private void updateLabels() {
         Platform.runLater(() -> {
             hours.setText(String.format("%02d", cronometro.getMinutes()));
@@ -87,11 +112,21 @@ public class CronoViewController implements CronometroListener {
         });
     }
 
+    /**
+     * Cambia a la vista de la tabla de tiempos.
+     *
+     * @throws IOException Si hay un error al cargar la vista.
+     */
     @FXML
     private void ShowTime() throws IOException {
         App.setRoot("tablecrono");
     }
 
+    /**
+     * Cambia a otra vista.
+     *
+     * @throws IOException Si hay un error al cargar la vista.
+     */
     @FXML
     private void ChangeView() throws IOException {
         App.setRoot("c");

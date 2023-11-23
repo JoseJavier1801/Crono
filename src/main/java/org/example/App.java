@@ -22,7 +22,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("CronoView"));
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("images/logo.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("images/Logo.png"))));
         stage.setTitle("Crono");
         stage.show();
     }
