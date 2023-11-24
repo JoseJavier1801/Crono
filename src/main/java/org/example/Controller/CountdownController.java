@@ -72,13 +72,14 @@ public class CountdownController {
     }
 
     private void initializeMediaPlayer() {
-        String musicFile = "C:\\Users\\FA506\\Music\\miedo.mp3";
-        Media sound = new Media(new File(musicFile).toURI().toString());
+        String musicFile = "/org/example/song/boy.mp3";
+        Media sound = new Media(getClass().getResource(musicFile).toString());
         mediaPlayer = new MediaPlayer(sound);
 
         // Configurar la reproducción en bucle
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     }
+
 
     @FXML
     private void startCountdown() {
