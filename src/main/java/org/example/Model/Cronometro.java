@@ -1,17 +1,27 @@
 package org.example.Model;
 
 public class Cronometro extends Thread {
-    private boolean running;
-    private boolean stopped;
-    private int minutes, seconds, miliseconds;
-    private CronometroListener listener;
 
-    private Object lock = new Object();
+    private boolean running; // Indica si el cronómetro está en ejecución
+    private boolean stopped; // Indica si el cronómetro está detenido
+    private int minutes, seconds, miliseconds; // Almacena el tiempo actual del cronómetro
+    private CronometroListener listener; // Listener para notificar cambios en el tiempo
 
+    private Object lock = new Object(); // Objeto de bloqueo para sincronización de hilos
+
+    /**
+     * Establece un {@link CronometroListener} para recibir actualizaciones en cada cambio de tiempo.
+     *
+     * @param listener El objeto que implementa la interfaz {@link CronometroListener}.
+     */
     public void setListener(CronometroListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Constructor de la clase Cronometro.
+     * Inicializa las variables de tiempo y estado del cronómetro.
+     */
     public Cronometro() {
         running = false;
         stopped = false;
@@ -20,6 +30,10 @@ public class Cronometro extends Thread {
         miliseconds = 0;
     }
 
+    /**
+     * Método principal del hilo que ejecuta el cronómetro.
+     * Incrementa el tiempo en milisegundos y notifica al listener en cada cambio.
+     */
     @Override
     public void run() {
         while (running) {
@@ -48,6 +62,10 @@ public class Cronometro extends Thread {
         }
     }
 
+    /**
+     * Inicia el cronómetro. Si el cronómetro se detuvo previamente, lo reinicia.
+     * Utiliza un bloqueo para garantizar la sincronización entre hilos.
+     */
     public void startCronometro() {
         synchronized (lock) {
             if (stopped) {
@@ -60,10 +78,17 @@ public class Cronometro extends Thread {
         }
     }
 
+    /**
+     * Reinicia el cronómetro deteniéndolo y restableciendo el tiempo a cero.
+     */
     public void resetAndStartCronometro() {
         resetCronometro();
     }
 
+    /**
+     * Detiene el cronómetro y marca el estado como detenido.
+     * Utiliza un bloqueo para garantizar la sincronización entre hilos.
+     */
     public void stopCronometro() {
         synchronized (lock) {
             running = false;
@@ -71,21 +96,39 @@ public class Cronometro extends Thread {
         }
     }
 
+    /**
+     * Reinicia el cronómetro estableciendo el tiempo a cero y deteniéndolo.
+     */
     public void resetCronometro() {
-        minutes = 00;
-        seconds = 00;
-        miliseconds = 00;
+        minutes = 0;
+        seconds = 0;
+        miliseconds = 0;
         stopCronometro();
     }
 
+    /**
+     * Obtiene los minutos actuales del cronómetro.
+     *
+     * @return Los minutos actuales del cronómetro.
+     */
     public int getMinutes() {
         return minutes;
     }
 
+    /**
+     * Obtiene los segundos actuales del cronómetro.
+     *
+     * @return Los segundos actuales del cronómetro.
+     */
     public int getSeconds() {
         return seconds;
     }
 
+    /**
+     * Obtiene los milisegundos actuales del cronómetro.
+     *
+     * @return Los milisegundos actuales del cronómetro.
+     */
     public int getMiliseconds() {
         return miliseconds;
     }
