@@ -47,12 +47,17 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="save_btn" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="SHOW SAVED TIME">
+      <Button fx:id="table_btn" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#ShowTime" prefHeight="49.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="SHOW SAVED TIME">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Button fx:id="change_btn" layoutX="487.0" layoutY="314.0" mnemonicParsing="false" onAction="#ChangeView" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="COUNTDOWN">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="save_btn" layoutX="117.0" layoutY="289.0" mnemonicParsing="false" onAction="#SaveTime" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: rgb(255, 195, 35);" text="Save Time">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
