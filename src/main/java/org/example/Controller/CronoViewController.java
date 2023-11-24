@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import org.example.App;
 import org.example.DAO.CronoDAO;
 import org.example.Model.Crono;
@@ -14,7 +16,7 @@ import org.example.Model.CronometroListener;
 import java.io.IOException;
 
 /**
- * Controlador que gestiona  la interfaz gráfica del cronómetro.
+ * Controlador que gestiona la interfaz gráfica del cronómetro.
  */
 public class CronoViewController implements CronometroListener {
 
@@ -45,11 +47,15 @@ public class CronoViewController implements CronometroListener {
     @FXML
     public Button change_btn;
 
+    @FXML
+    public ImageView nano;
+
     private Cronometro cronometro;
 
     private Thread cronometroThread;
 
-    CronoDAO CDAO=new CronoDAO();
+    CronoDAO CDAO = new CronoDAO();
+
 
 
     /**
@@ -82,7 +88,21 @@ public class CronoViewController implements CronometroListener {
     @FXML
     private void Stop() {
         cronometro.stopCronometro();
+        see(); // Llama al método see() al detener el cronómetro
     }
+    @FXML
+    public void initialize() {
+        nano.setVisible(false);
+    }
+
+    private void see() {
+
+        int minutes = Integer.parseInt(this.minutes.getText());
+        if (minutes == 33) {
+            nano.setVisible(true);
+        }
+    }
+
 
     /**
      * Reinicia el cronómetro y actualiza los Labels.
@@ -92,6 +112,7 @@ public class CronoViewController implements CronometroListener {
         cronometro.stopCronometro();
         cronometro.resetAndStartCronometro();
         updateLabels();
+        see(); // Llama al método see() al reiniciar el cronómetro
     }
 
     /**
@@ -140,20 +161,20 @@ public class CronoViewController implements CronometroListener {
     private void ChangeView() throws IOException {
         App.setRoot("c");
     }
+
     @FXML
-    private void SaveTime() throws IOException{
+    private void SaveTime() throws IOException {
         int hours = Integer.parseInt(this.hours.getText());
         int minutes = Integer.parseInt(this.minutes.getText());
         int seconds = Integer.parseInt(this.seconds.getText());
 
         Crono C = new Crono(hours, minutes, seconds);
-        if(CDAO!=null){
+        if (CDAO != null) {
             CDAO.add(C);
             showAlert("Tiempo guardado en la base de datos.");
-        }else {
+        } else {
             showAlert("No se ha podido añadir el tiempo");
         }
-
     }
 
     private void showAlert(String message) {
