@@ -2,9 +2,12 @@ package org.example.Controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.example.App;
+import org.example.DAO.CronoDAO;
+import org.example.Model.Crono;
 import org.example.Model.Cronometro;
 import org.example.Model.CronometroListener;
 
@@ -37,11 +40,17 @@ public class CronoViewController implements CronometroListener {
     public Button save_btn;
 
     @FXML
+    public Button table_btn;
+
+    @FXML
     public Button change_btn;
 
     private Cronometro cronometro;
 
     private Thread cronometroThread;
+
+    CronoDAO CDAO=new CronoDAO();
+
 
     /**
      * Constructor del controlador. Inicializa el cronómetro y el hilo asociado.
@@ -130,5 +139,28 @@ public class CronoViewController implements CronometroListener {
     @FXML
     private void ChangeView() throws IOException {
         App.setRoot("c");
+    }
+    @FXML
+    private void SaveTime() throws IOException{
+        int hours = Integer.parseInt(this.hours.getText());
+        int minutes = Integer.parseInt(this.minutes.getText());
+        int seconds = Integer.parseInt(this.seconds.getText());
+
+        Crono C = new Crono(hours, minutes, seconds);
+        if(CDAO!=null){
+            CDAO.add(C);
+            showAlert("Tiempo guardado en la base de datos.");
+        }else {
+            showAlert("No se ha podido añadir el tiempo");
+        }
+
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
