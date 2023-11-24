@@ -6,16 +6,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.example.App;
 import org.example.Model.Crono;
 
+import java.io.File;
 import java.io.IOException;
 
 public class CountdownController {
 
     @FXML
     private Label milisegundosLabel;
+
+    @FXML
+    private Rectangle time;
 
     @FXML
     private Label minutesLabel;
@@ -49,19 +57,54 @@ public class CountdownController {
 
     @FXML
     private Button resbtnminseconmin;
+
     @FXML
     private Button buttonExit;
 
     private Crono crono;
     private Timeline timeline;
-    @FXML
-    private void Exit() throws IOException {
-        App.setRoot("CronoView");
-    }
+    private MediaPlayer mediaPlayer;
 
     public CountdownController() {
         crono = new Crono(0, 0, 0);
         timeline = new Timeline();
+        initializeMediaPlayer();
+    }
+
+    private void initializeMediaPlayer() {
+        String musicFile = "C:\\Users\\FA506\\Music\\miedo.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+
+        // Configurar la reproducción en bucle
+        mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+    }
+
+    @FXML
+    private void startCountdown() {
+        if (timeline.getStatus() != Timeline.Status.RUNNING) {
+            // Limpiar los KeyFrames existentes antes de agregar uno nuevo
+            timeline.getKeyFrames().clear();
+
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(1), event -> {
+                updateCountdown(event);
+                updateColor();
+            });
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+
+            // Reproducir música en bucle
+            mediaPlayer.play();
+
+            // Establecer el color a verde
+            time.setFill(Color.GREEN);
+        }
+    }
+
+    @FXML
+    private void Exit() throws IOException {
+        App.setRoot("CronoView");
     }
 
     @FXML
@@ -107,22 +150,13 @@ public class CountdownController {
     }
 
     @FXML
-    private void startCountdown() {
-        if (timeline.getStatus() != Timeline.Status.RUNNING) {
-            // Limpiar los KeyFrames existentes antes de agregar uno nuevo
-            timeline.getKeyFrames().clear();
-
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(1), this::updateCountdown);
-            timeline.getKeyFrames().add(keyFrame);
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
-        }
-    }
-
-
-    @FXML
     private void stopCountdown() {
         timeline.stop();
+        // Detener la reproducción de música
+        mediaPlayer.stop();
+
+        // Actualizar el color cuando se detiene la cuenta atrás
+        updateColor();
     }
 
     @FXML
@@ -130,8 +164,10 @@ public class CountdownController {
         stopCountdown();
         crono = new Crono(0, 0, 0);
         updateLabels();
-    }
 
+        // Establecer el color a verde
+        time.setFill(Color.GREEN);
+    }
 
     private void updateCountdown(ActionEvent event) {
         if (crono.getMilisegundos() > 0) {
@@ -152,5 +188,15 @@ public class CountdownController {
         minutesLabel.setText(String.format("%02d", crono.getMinutes()));
         secondsLabel.setText(String.format("%02d", crono.getSeconds()));
         milisegundosLabel.setText(String.format("%03d", crono.getMilisegundos()));
+    }
+
+    private void updateColor() {
+        if (timeline.getStatus() == Timeline.Status.STOPPED) {
+            // La cuenta atrás ha llegado a cero, establecer el color a rojo
+            time.setFill(Color.RED);
+        } else {
+            // La cuenta atrás está en progreso, establecer el color a verde
+            time.setFill(Color.GREEN);
+        }
     }
 }

@@ -15,6 +15,11 @@
             <artifactId>pdfbox</artifactId>
             <version>2.0.28</version> <!-- Utiliza la versión más reciente -->
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>16</version> <!-- Ajusta la versión según tu versión de JavaFX -->
+        </dependency>
 
 
         <dependency>
