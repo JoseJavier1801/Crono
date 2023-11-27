@@ -64,13 +64,16 @@ public class CountdownController {
     private Crono crono;
     private Timeline timeline;
     private MediaPlayer mediaPlayer;
-
+//para la muscia
     public CountdownController() {
         crono = new Crono(0, 0, 0);
         timeline = new Timeline();
         initializeMediaPlayer();
     }
 
+    /**
+     * inicia la cancion
+     */
     private void initializeMediaPlayer() {
         String musicFile = "/org/example/song/boy.mp3";
         Media sound = new Media(getClass().getResource(musicFile).toString());
@@ -80,7 +83,9 @@ public class CountdownController {
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
     }
 
-
+    /**
+     * inicia el contador
+     */
     @FXML
     private void startCountdown() {
         if (timeline.getStatus() != Timeline.Status.RUNNING) {
@@ -103,17 +108,27 @@ public class CountdownController {
         }
     }
 
+    /**
+     * funcion para salir
+     * @throws IOException
+     */
     @FXML
     private void Exit() throws IOException {
         App.setRoot("CronoView");
     }
 
+    /**
+     * aumentar los minutos
+     */
     @FXML
     private void incrementMinutes() {
         crono.setMinutes(crono.getMinutes() + 1);
         updateLabels();
     }
 
+    /**
+     * disminuir los minutos
+     */
     @FXML
     private void decrementMinutes() {
         if (crono.getMinutes() > 0) {
@@ -150,6 +165,9 @@ public class CountdownController {
         }
     }
 
+    /**
+     * para el contador y el sonido
+     */
     @FXML
     private void stopCountdown() {
         timeline.stop();
@@ -160,6 +178,9 @@ public class CountdownController {
         updateColor();
     }
 
+    /**
+     * reinicia el contador
+     */
     @FXML
     private void restartCountdown() {
         stopCountdown();
@@ -169,6 +190,12 @@ public class CountdownController {
         // Establecer el color a verde
         time.setFill(Color.GREEN);
     }
+
+    /**
+     * para que el contador cambie las cifras dependiendo si son minutos , segundos o milesimas que funcione como una cuenta atras
+     * normal
+     * @param event
+     */
 
     private void updateCountdown(ActionEvent event) {
         if (crono.getMilisegundos() > 0) {
@@ -190,6 +217,10 @@ public class CountdownController {
         secondsLabel.setText(String.format("%02d", crono.getSeconds()));
         milisegundosLabel.setText(String.format("%03d", crono.getMilisegundos()));
     }
+
+    /**
+     * funcion para que cambie de color el recuadro
+     */
 
     private void updateColor() {
         if (timeline.getStatus() == Timeline.Status.STOPPED) {
