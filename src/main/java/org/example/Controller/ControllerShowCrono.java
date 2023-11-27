@@ -39,11 +39,18 @@ public class ControllerShowCrono {
     // Variable para almacenar la ID seleccionada
     private int selectedCronoId = -1;
 
+    /**
+     * funcin para volver atras
+     * @throws IOException
+     */
     @FXML
     private void Exit() throws IOException {
         App.setRoot("CronoView");
     }
 
+    /**
+     * funcion ara guardar los la id de el tiempo seleccionado
+     */
     @FXML
     private void handleCronoClick() {
         Crono selectedCrono = cronoTable.getSelectionModel().getSelectedItem();
@@ -52,6 +59,10 @@ public class ControllerShowCrono {
             selectedCronoId = selectedCrono.getId(); // Asegúrate de tener un método getId() en tu clase Crono
         }
     }
+
+    /**
+     * funcion para borrar el tiempo
+     */
 
     @FXML
     private void handleDeleteButtonClick() {
@@ -68,6 +79,9 @@ public class ControllerShowCrono {
         }
     }
 
+    /**
+     * funcion para que los datos se inicien las columnas de la  tabla
+     */
 
     @FXML
     public void initialize() {
